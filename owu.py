@@ -2,6 +2,8 @@
 OwU - OwO, but someone punches his left eye.
 """
 
+from pprint import pp
+
 TYPES = [
     "number",     # 0: value
     "string",     # 1: value
@@ -10,7 +12,7 @@ TYPES = [
     "verb",       # 4: name/function?
     "nil"         # 5: nil/null
 ]
-VERBS_LIST = ["+", "-", "*", "/", "%", ">", "<", "=", "|", "#", "!", "@", "$", "^", "`", "D", "W"]
+VERBS_LIST = ["+", "-", "*", "/", "%", ">", "<", "=", "|", "#", "!", "@", "$", "^", "`"]
 
 def o   (t, v): return { "t": t, "v": v }
 def on  (v):    return o(0, v)
@@ -55,9 +57,9 @@ def swap(x, y, z):
     x[y], x[z] = x[z], x[y]
     return x
 
-# Parser
+# Parser/Tokenizer
 
-WHITESPACE = " \t\r\f"
+WHITESPACE = " \n\t\r\f"
 numeric = lambda c: c.isnumeric()
 identifier = lambda c: c.isalpha() and c not in WHITESPACE
 symbol = lambda c: c.isascii() and c not in WHITESPACE
@@ -88,9 +90,9 @@ def parseVal(code, pos):
             if val != NIL:
                 lst.append(val)
             if val["v"] == "]": break
-        # Here we need to pop() the list to remove the remaining ] "verb"
+        # Here we need to pop() the list to remove the remaining ]
         lst.pop()
-        print(lst)
+        #print(lst)
         return ol(lst), pos
     elif symbol(current):
         # Since every verb is a symbol character, we only need to consume
@@ -102,27 +104,29 @@ def parseVal(code, pos):
 
 def parser(code):
     pos = 0
-    lst = [] # List of tokens
+    lst = []
     while pos < len(code):
         val, pos = parseVal(code, pos)
         lst.append(val)
+    # https://stackoverflow.com/a/1157160
+    lst = list(filter(lambda x: x != NIL, lst))
     return lst
 
 # Eval
 
-def eval(code):
+def eval(tokens):
     pass
-
-# Prettyprinter
-
-def pp(x):
-    print(f"{x['v']}:", typeof(x)["v"])
 
 # Main
 
 def main():
-    code = "10 2W%0="
-    print(parser(code))
+    code = """
+    [* [50 40]]
+    [apply + [! 10]]
+    10
+    """
+    pp(parser(code))
+    #eval(parser(code))
 
 if __name__ == "__main__":
     main()
