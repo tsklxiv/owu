@@ -110,43 +110,8 @@ def parser(code):
 
 # Eval
 
-def eval(tokens):
-    pos = 0
-    stack = []
-    verbs = {
-        "+": lambda: stack.append(plus(stack.pop(), stack.pop())),
-        "-": lambda: stack.append(minus(stack.pop(), stack.pop())),
-        "*": lambda: stack.append(first(stack.pop()) if peek(stack)["t"] == 2 else times(stack.pop(), stack.pop())),
-        "/": lambda: stack.append(divide(stack.pop(), stack.pop())),
-        "%": lambda: stack.append(modulo(stack.pop(), stack.pop())),
-        ">": lambda: stack.append(more(stack.pop(), stack.pop())),
-        "<": lambda: stack.append(less(stack.pop(), stack.pop())),
-        "=": lambda: stack.append(equal(stack.pop(), stack.pop())),
-        "|": lambda: stack.append(reverse(stack.pop())if peek(stack)["t"] in [1, 2] else maxo(stack.pop(), stack.pop())),
-        "#": lambda: stack.append(length(stack.pop())),
-        "!": lambda: stack.append(enum(stack.pop())),
-        "D": lambda: stack.append(peek(stack)),
-        "W": lambda: swap(stack, -1, -2),
-    }
-    env = {}
-    env = {**env, **verbs}
-    while pos < len(tokens):
-        token = tokens[pos]
-        if token["t"] == 5:
-            pos += 1
-        elif token["t"] == 4 and token["v"] in verbs:
-            print(f"Verb: {token}")
-            if token["v"] == "W":
-                # The swap operator is an expection, as we need to replace the old stack with the
-                # stack with the newly swapped elements
-                stack = verbs[token["v"]]()
-            else:
-                verbs[token["v"]]()
-            pos += 1
-        else:
-            stack.append(token)
-            pos += 1
-    return stack
+def eval(code):
+    pass
 
 # Prettyprinter
 
@@ -157,8 +122,7 @@ def pp(x):
 
 def main():
     code = "10 2W%0="
-    #print(parser(code))
-    print(eval(parser(code)))
+    print(parser(code))
 
 if __name__ == "__main__":
     main()
