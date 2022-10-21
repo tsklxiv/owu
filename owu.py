@@ -60,15 +60,16 @@ def swap(x, y, z):
 # Environments
 def init_env():
     return {
-        "+": lambda x, y: plus(x, y),
-        "-": lambda x, y: minus(x, y),
-        "*": lambda x, y: times(x, y),
-        "/": lambda x, y: divide(x, y),
-        "%": lambda x, y: modulo(x, y),
-        ">": lambda x, y: more(x, y),
-        "<": lambda x, y: less(x, y),
-        "=": lambda x, y: equal(x, y),
+        "+": lambda x: plus(x[0], x[1]),
+        "-": lambda x: minus(x[0], x[1]),
+        "*": lambda x: times(x[0], x[1]),
+        "/": lambda x: divide(x[0], x[1]),
+        "%": lambda x: modulo(x[0], x[1]),
+        ">": lambda x: more(x[0], x[1]),
+        "<": lambda x: less(x[0], x[1]),
+        "=": lambda x: equal(x[0], x[1]),
     }
+global_env = init_env()
 
 # Parser/Tokenizer
 
