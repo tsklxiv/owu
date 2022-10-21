@@ -117,6 +117,11 @@ def parser(code):
 def eval(tokens):
     pass
 
+# Prettyprinter
+
+def format(o):
+    return o["v"]
+
 # Main
 
 def main():
