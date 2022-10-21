@@ -86,13 +86,11 @@ def parseVal(code, pos):
         lst = []
         while True:
             val, pos = parseVal(code, pos)
-            #print(f"Value: {val} Position: {pos}")
             if val != NIL:
                 lst.append(val)
             if val["v"] == "]": break
         # Here we need to pop() the list to remove the remaining ]
         lst.pop()
-        #print(lst)
         return ol(lst), pos
     elif symbol(current):
         # Since every verb is a symbol character, we only need to consume
