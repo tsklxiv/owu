@@ -131,18 +131,18 @@ def parser(code):
 
 def eval(x, env=global_env):
     "Evaluate an expression in an environment"
-    for expr in x:
-        if expr["t"] == 3:   # Variable reference
-            return env[expr]
-        elif expr["t"] == 2: # Expressions (lists)
-            op = expr["v"][0]
-            args = [eval(exp, env) for exp in expr["v"][1:]]
-            if op["t"] == 3 or op["t"] == 4:
-                env[op["v"]](args)
-            else:
-                return expr["v"]
-        else:             # Literals
-            return expr
+    if x["t"] == 3:   # Variable reference
+        return env[x]
+    elif x["t"] == 2: # Expressions (lists)
+        op = x["v"][0]
+        args = [eval(exp, env) for exp in x["v"][1:]]
+        print(f"Operator: {op}, Arguments: {args}")
+        if op["t"] == 3 or op["t"] == 4:
+            env[op["v"]](args)
+        else:
+            return x["v"]
+    else:             # Literals
+        return x
 
 # Prettyprinter
 
@@ -154,10 +154,12 @@ def format(o):
 
 def main():
     code = """
-    10
+    [1 2 3]
     """
-    pp(parser(code))
-    pp(eval(parser(code)))
+    parsed = parser(code)
+    pp(f"Parsed: {parsed}")
+    for expr in parsed:
+        pp(eval(expr))
 
 if __name__ == "__main__":
     main()
