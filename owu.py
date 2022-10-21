@@ -65,6 +65,7 @@ identifier = lambda c: c.isalpha() and c not in WHITESPACE
 symbol = lambda c: c.isascii() and c not in WHITESPACE
 
 def consume(cond, code, pos):
+    "Consume a token in `code` until the condition `cond` is false"
     prev_pos = pos
     pos += 1
     while pos < len(code) and cond(code[pos]):
@@ -72,6 +73,7 @@ def consume(cond, code, pos):
     return code[prev_pos:pos], pos
 
 def parseVal(code, pos):
+    "Parse each value in `code` at position `pos`"
     current = code[pos]
     if numeric(current):
         num, pos = consume(numeric, code, pos)
@@ -101,6 +103,7 @@ def parseVal(code, pos):
     return os("Cannot identify what I am reading. Skipping"), pos + 1
 
 def parser(code):
+    "Parser"
     pos = 0
     lst = []
     while pos < len(code):
@@ -112,12 +115,15 @@ def parser(code):
 
 # Eval
 
-def eval(tokens):
-    pass
+def eval(x, env):
+    "Evaluate an expression in an environment"
+    if x["t"] == 3: # variable reference
+        return env[x]
 
 # Prettyprinter
 
 def format(o):
+    "Format an object"
     return o["v"]
 
 # Main
