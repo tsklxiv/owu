@@ -57,6 +57,19 @@ def swap(x, y, z):
     x[y], x[z] = x[z], x[y]
     return x
 
+# Environments
+def init_env():
+    return {
+        "+": lambda x, y: plus(x, y),
+        "-": lambda x, y: minus(x, y),
+        "*": lambda x, y: times(x, y),
+        "/": lambda x, y: divide(x, y),
+        "%": lambda x, y: modulo(x, y),
+        ">": lambda x, y: more(x, y),
+        "<": lambda x, y: less(x, y),
+        "=": lambda x, y: equal(x, y),
+    }
+
 # Parser/Tokenizer
 
 WHITESPACE = " \n\t\r\f"
@@ -117,8 +130,17 @@ def parser(code):
 
 def eval(x, env):
     "Evaluate an expression in an environment"
-    if x["t"] == 3: # variable reference
+    if x["t"] == 3:   # Variable reference
         return env[x]
+    elif x["t"] == 2: # Expressions (lists)
+        op = x["v"][0]
+        args = [eval(exp, env) for exp in x["v"][1:]]
+        if op["t"] == 3 or op["t"] == 4:
+            env[op["v"]](args)
+        else:
+            return x["v"]
+    else:             # Literals
+        return x
 
 # Prettyprinter
 
@@ -130,12 +152,10 @@ def format(o):
 
 def main():
     code = """
-    [* [50 40]]
-    [apply + [! 10]]
     10
     """
     pp(parser(code))
-    #eval(parser(code))
+    pp(eval(parser(code)))
 
 if __name__ == "__main__":
     main()
