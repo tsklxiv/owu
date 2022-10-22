@@ -167,7 +167,7 @@ def main():
     [1 2 3]
     """
     parsed = parser(code)
-    pp(f"Parsed: {parsed}")
+    print(f"Parsed: {parsed}")
     for expr in parsed:
         pp(eval(expr))
 
