@@ -109,7 +109,7 @@ def parseVal(code, pos):
         lst.pop()
         return ol(lst), pos
     elif current == ";":        # Comments
-        while pos < len(code): pos += 1
+        while pos < len(code) and code[pos] != "\n": pos += 1
         return NIL, pos
     elif symbol(current):       # Verbs/Symbols
         # Since every verb is a symbol character, we only need to consume
@@ -164,6 +164,7 @@ def format(o):
 
 def main():
     code = """
+    ; This is a comment
     [1 2 3]
     """
     parsed = parser(code)
