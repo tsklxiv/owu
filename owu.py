@@ -137,7 +137,7 @@ def parser(code):
 # Eval
 
 def handle_verbs(op, args, env):
-    if op == "?":
+    if op["v"] == "?":
         cond, true, false = args
         exp = (true if eval(cond, env) else false)
         return eval(exp, env)
