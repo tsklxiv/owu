@@ -72,6 +72,8 @@ def init_env():
         "!": lambda x: ol(list(map(on, range(0, x[0]["v"])))),
         "h": lambda x: first(x[0]),
         "t": lambda x: tail(x[0]),
+        "r": lambda x: reverse(x[0]),
+        "l": lambda x: length(x[0]),
     }
 global_env = init_env()
 
