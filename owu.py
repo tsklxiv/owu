@@ -167,11 +167,13 @@ def format(o):
 # REPL
 
 def repl(prompt="\t"):
-    code = input(prompt)
-    parsed = parser(code)
-    print(f"Parsed: {parsed}")
-    for expr in parsed:
-        pp(eval(expr))
+    code = None
+    while code != "q":
+        code = input(prompt)
+        parsed = parser(code)
+        print(f"Parsed: {parsed}")
+        for expr in parsed:
+            pp(eval(expr))
 
 if __name__ == "__main__":
     repl()
