@@ -69,7 +69,7 @@ def init_env():
         "<": lambda x: reduce(less, x),
         "=": lambda x: reduce(equal, x),
         "!": lambda x: list(range(0, x[0])),
-        "h": lambda x: list(map(first, x)),
+        "h": lambda x: first(x),
         "t": lambda x: x[1:],
     }
 global_env = init_env()
@@ -166,9 +166,11 @@ def format(o):
 def main():
     code = """
     ; This is a comment
-    [1 2 3]       ; -> 1 2 3
-    [+ 1 2 3 4 5] ; -> 15
-    [= 2 3 5]     ; -> 0 (false)
+    [1 2 3]         ; -> 1 2 3
+    [+ 1 2 3 4 5]   ; -> 15
+    [= 2 3 5]       ; -> 0 (false)
+    [h [1 2 3 4 5]] ; -> 1
+    [t [1 2 3 4 5]] ; -> [2 3 4 5]
     """
     parsed = parser(code)
     print(f"Parsed: {parsed}")
