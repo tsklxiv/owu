@@ -139,7 +139,7 @@ def parser(code):
 def eval(x, env=global_env):
     "Evaluate an expression in an environment"
     if x["t"] == 3:   # Variable reference
-        return env[x]
+        return env[x["v"]]
     elif x["t"] == 2: # Expressions (lists)
         op = x["v"][0]
         args = [eval(exp, env) for exp in x["v"][1:]]
