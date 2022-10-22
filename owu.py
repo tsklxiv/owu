@@ -3,6 +3,7 @@ OwU - OwO, but someone punches his left eye.
 """
 
 from pprint import pp
+from functools import reduce
 
 TYPES = [
     "number",     # 0: value
@@ -59,14 +60,14 @@ def swap(x, y, z):
 # Environments
 def init_env():
     return {
-        "+": lambda x: plus(x[0], x[1]),
-        "-": lambda x: minus(x[0], x[1]),
-        "*": lambda x: times(x[0], x[1]),
-        "/": lambda x: divide(x[0], x[1]),
-        "%": lambda x: modulo(x[0], x[1]),
-        ">": lambda x: more(x[0], x[1]),
-        "<": lambda x: less(x[0], x[1]),
-        "=": lambda x: equal(x[0], x[1]),
+        "+": lambda x: reduce(plus, x),
+        "-": lambda x: reduce(minus, x),
+        "*": lambda x: reduce(times, x),
+        "/": lambda x: reduce(divide, x),
+        "%": lambda x: reduce(modulo, x),
+        ">": lambda x: reduce(more, x),
+        "<": lambda x: reduce(less, x),
+        "=": lambda x: reduce(equal, x),
     }
 global_env = init_env()
 
