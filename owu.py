@@ -138,7 +138,7 @@ def eval(x, env=global_env):
         args = [eval(exp, env) for exp in x["v"][1:]]
         print(f"Operator: {op}, Arguments: {args}")
         if op["t"] == 3 or op["t"] == 4:
-            env[op["v"]](args)
+            return env[op["v"]](args)
         else:
             return x["v"]
     else:             # Literals
@@ -163,6 +163,7 @@ def main():
     code = """
     ; This is a comment
     [1 2 3]
+    [* 2 3]
     """
     parsed = parser(code)
     print(f"Parsed: {parsed}")
