@@ -120,6 +120,7 @@ def parseVal(code, pos):
                 break
             s += code[pos]
             pos += 1
+        # pos + 1 also to skip the remaining "
         return os(s), pos + 1
     elif current == ";":        # Comments
         while pos < len(code) and code[pos] != "\n": pos += 1
