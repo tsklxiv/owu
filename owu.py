@@ -153,7 +153,7 @@ def eval(x, env=global_env):
         args = [eval(exp, env) for exp in x["v"][1:]]
         print(f"Operator: {op}, Arguments: {args}")
         if op["t"] == 3 or op["t"] == 4:
-            handle_verbs(op, args, env)
+            return handle_verbs(op, args, env)
         else:
             return x
     else:             # Literals
