@@ -12,7 +12,6 @@ TYPES = [
     "verb",       # 4: name/function?
     "nil"         # 5: nil/null
 ]
-VERBS_LIST = ["+", "-", "*", "/", "%", ">", "<", "=", "|", "#", "!", "@", "$", "^", "`"]
 
 def o   (t, v): return { "t": t, "v": v }
 def on  (v):    return o(0, v)
@@ -94,8 +93,6 @@ def parseVal(code, pos):
         return on(int(num)), pos
     elif identifier(current):   # Identifiers
         ident, pos = consume(identifier, code, pos)
-        if ident in VERBS_LIST:
-            return ov(ident), pos
         return oi(ident), pos
     elif current == "[":        # Expressions/Lists
         pos += 1
