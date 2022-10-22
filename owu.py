@@ -168,8 +168,10 @@ def format(o):
 
 def repl(prompt="\t"):
     code = None
-    while code != "q":
+    while True:
         code = input(prompt)
+        if code == "q":
+            exit(0)
         parsed = parser(code)
         print(f"Parsed: {parsed}")
         for expr in parsed:
