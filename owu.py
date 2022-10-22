@@ -112,6 +112,15 @@ def parseVal(code, pos):
         # Here we need to pop() the list to remove the remaining ]
         lst.pop()
         return ol(lst), pos
+    elif current == "\"":        # Strings
+        pos += 1
+        s = ""
+        while True:
+            if code[pos] == "\"":
+                break
+            s += code[pos]
+            pos += 1
+        return os(s), pos
     elif current == ";":        # Comments
         while pos < len(code) and code[pos] != "\n": pos += 1
         return NIL, pos
