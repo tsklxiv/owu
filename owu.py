@@ -89,15 +89,15 @@ def consume(cond, code, pos):
 def parseVal(code, pos):
     "Parse each value in `code` at position `pos`"
     current = code[pos]
-    if numeric(current):
+    if numeric(current):        # Numbers
         num, pos = consume(numeric, code, pos)
         return on(int(num)), pos
-    elif identifier(current):
+    elif identifier(current):   # Identifiers
         ident, pos = consume(identifier, code, pos)
         if ident in VERBS_LIST:
             return ov(ident), pos
         return oi(ident), pos
-    elif current == "[":
+    elif current == "[":        # Expressions/Lists
         pos += 1
         lst = []
         while True:
@@ -108,11 +108,11 @@ def parseVal(code, pos):
         # Here we need to pop() the list to remove the remaining ]
         lst.pop()
         return ol(lst), pos
-    elif symbol(current):
+    elif symbol(current):       # Verbs/Symbols
         # Since every verb is a symbol character, we only need to consume
         # one symbol at a time
         return ov(current), pos + 1
-    elif current in WHITESPACE:
+    elif current in WHITESPACE: # Nils
         return NIL, pos + 1
     return os("Cannot identify what I am reading. Skipping"), pos + 1
 
