@@ -45,6 +45,7 @@ def typeof(x):    return os(TYPES[x["t"]])
 ## List/String-specific verbs
 
 def first  (x): return x["v"][0]
+def tail   (x): return x["v"][1:]
 def reverse(x): return x["v"][::-1]
 def length (x): return on(len(x["v"]))
 
@@ -70,7 +71,7 @@ def init_env():
         "=": lambda x: reduce(equal, x),
         "!": lambda x: list(range(0, x[0])),
         "h": lambda x: first(x[0]),
-        "t": lambda x: x[1:],
+        "t": lambda x: tail(x[0]),
     }
 global_env = init_env()
 
