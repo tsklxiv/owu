@@ -176,7 +176,7 @@ def format(o):
     if o["t"] == 2:                  # Lists
         return [format(obj) for obj in o["v"]]
     elif o["t"] == 3 or o["t"] == 4: # Identifiers/Verbs
-        return f'#{o["v"]}'
+        return f'`{o["v"]}`'
     elif o["t"] == 5:                # Nil
         return "NIL"
     else:                            # Numbers/Strings/Other literals
