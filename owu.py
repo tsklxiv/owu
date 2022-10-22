@@ -144,7 +144,7 @@ def eval(x, env=global_env):
         if op["t"] == 3 or op["t"] == 4:
             return env[op["v"]](args)
         else:
-            return x["v"]
+            return x
     else:             # Literals
         return x
 
