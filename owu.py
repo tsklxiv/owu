@@ -164,22 +164,14 @@ def format(o):
     else:                            # Numbers/Strings/Other literals
         return o["v"]
 
-# Main
+# REPL
 
-def main():
-    code = """
-    ; This is a comment
-    [1 2 3]         ; -> 1 2 3
-    [+ 1 2 3 4 5]   ; -> 15
-    [= 2 3 5]       ; -> 0 (false)
-    [h [1 2 3 4 5]] ; -> 1
-    [t [1 2 3 4 5]] ; -> [2 3 4 5]
-    [t [! 10]]      ; -> [2 3 ... 10]
-    """
+def repl(prompt="\t"):
+    code = input(prompt)
     parsed = parser(code)
     print(f"Parsed: {parsed}")
     for expr in parsed:
         pp(eval(expr))
 
 if __name__ == "__main__":
-    main()
+    repl()
