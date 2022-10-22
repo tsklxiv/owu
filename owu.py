@@ -108,6 +108,9 @@ def parseVal(code, pos):
         # Here we need to pop() the list to remove the remaining ]
         lst.pop()
         return ol(lst), pos
+    elif current == ";":        # Comments
+        while pos < len(code): pos += 1
+        return NIL, pos
     elif symbol(current):       # Verbs/Symbols
         # Since every verb is a symbol character, we only need to consume
         # one symbol at a time
