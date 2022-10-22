@@ -175,7 +175,7 @@ def repl(prompt="\t"):
         parsed = parser(code)
         print(f"Parsed: {parsed}")
         for expr in parsed:
-            pp(format(eval(expr)))
+            print(format(eval(expr)))
 
 if __name__ == "__main__":
     repl()
