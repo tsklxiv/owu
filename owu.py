@@ -69,7 +69,7 @@ def init_env():
         ">": lambda x: reduce(more, x),
         "<": lambda x: reduce(less, x),
         "=": lambda x: reduce(equal, x),
-        "!": lambda x: list(range(0, x[0])),
+        "!": lambda x: ol(list(map(on, range(0, x[0]["v"])))),
         "h": lambda x: first(x[0]),
         "t": lambda x: tail(x[0]),
     }
@@ -172,6 +172,7 @@ def main():
     [= 2 3 5]       ; -> 0 (false)
     [h [1 2 3 4 5]] ; -> 1
     [t [1 2 3 4 5]] ; -> [2 3 4 5]
+    [t [! 10]]      ; -> [2 3 ... 10]
     """
     parsed = parser(code)
     print(f"Parsed: {parsed}")
