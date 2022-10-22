@@ -163,8 +163,9 @@ def format(o):
 def main():
     code = """
     ; This is a comment
-    [1 2 3]
-    [* 2 3]
+    [1 2 3]       ; -> 1 2 3
+    [+ 1 2 3 4 5] ; -> 15
+    [= 2 3 5]     ; -> 0 (false)
     """
     parsed = parser(code)
     print(f"Parsed: {parsed}")
