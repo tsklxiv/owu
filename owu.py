@@ -115,7 +115,7 @@ def parseVal(code, pos):
     elif current == "\"":        # Strings
         pos += 1
         s = ""
-        while True:
+        while pos < len(code):
             if code[pos] == "\"":
                 break
             s += code[pos]
