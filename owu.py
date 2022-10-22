@@ -68,6 +68,7 @@ def init_env():
         ">": lambda x: reduce(more, x),
         "<": lambda x: reduce(less, x),
         "=": lambda x: reduce(equal, x),
+        "!": lambda x: list(range(0, x[0])),
     }
 global_env = init_env()
 
