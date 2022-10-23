@@ -85,6 +85,9 @@ def consume(cond, code, pos):
 
 def parseVal(code, pos):
     "Parse each value in `code` at position `pos`"
+    if pos >= len(code):
+        print("End of code. Nothing more to parse.")
+        return NIL, pos
     current = code[pos]
     if numeric(current):        # Numbers
         num, pos = consume(numeric, code, pos)
