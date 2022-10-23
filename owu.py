@@ -12,6 +12,7 @@ TYPES = [
     "identifier", # 3: name
     "verb",       # 4: name/function?
     "nil"         # 5: nil/null
+    "eof",        # 6: eof/eol check
 ]
 
 def o   (t, v): return { "t": t, "v": v }
@@ -23,6 +24,7 @@ def ov  (v):    return o(4, v)
 def btoi(v):    return 1 if v else 0 # Boolean to plain integer
 
 NIL   = o(5, "")
+EOF   = o(6, "")
 TRUE  = on(1)
 FALSE = on(0)
 
@@ -87,7 +89,7 @@ def parseVal(code, pos):
     "Parse each value in `code` at position `pos`"
     if pos >= len(code):
         print("End of code. Nothing more to parse.")
-        return NIL, pos + 1
+        return EOF, pos + 1
     current = code[pos]
     if numeric(current):        # Numbers
         num, pos = consume(numeric, code, pos)
@@ -135,7 +137,7 @@ def parser(code):
     lst = []
     while pos < len(code):
         val, pos = parseVal(code, pos)
-        if val == NIL: break
+        if val == EOF: break
         lst.append(val)
     # https://stackoverflow.com/a/1157160
     lst = list(filter(lambda x: x != NIL, lst))
