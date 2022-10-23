@@ -49,15 +49,6 @@ def tail   (x): return x["v"][1:]
 def reverse(x): return x["v"][::-1]
 def length (x): return on(len(x["v"]))
 
-# Helper functions
-
-def peek(x):
-    if len(x) > 0: return x[-1]
-    raise IndexError
-def swap(x, y, z):
-    x[y], x[z] = x[z], x[y]
-    return x
-
 # Environments
 def init_env():
     return {
