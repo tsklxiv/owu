@@ -104,12 +104,13 @@ def parseVal(code, pos):
             val, pos = parseVal(code, pos)
             if val != NIL:
                 lst.append(val)
+            if val == EOF:
+                print("Unexpected EOF.")
+                return EOF, pos + 1
             if val["v"] == "]": break
         # Here we need to pop() the list to remove the remaining ]
         lst.pop()
         return ol(lst), pos
-    elif current == "]":
-        return os("Unexpected ']'"), pos + 1
     elif current == "\"":        # Strings
         pos += 1
         s = ""
