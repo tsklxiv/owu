@@ -145,9 +145,6 @@ def handle_verbs(op, args, env):
         cond, true, false = args
         exp = (true if eval(cond, env) else false)
         return eval(exp, env)
-    elif op["v"] == "d":
-        var, exp = args
-        env[var] = eval(exp, env)
     else:
         return env[op["v"]](args)
 
@@ -160,6 +157,7 @@ def eval(x, env=global_env):
         if op["v"] == "d":
             (_, var, exp) = x["v"]
             env[var["v"]] = eval(exp, env)
+            return NIL
         elif op["t"] == 3 or op["t"] == 4:
             args = [eval(exp, env) for exp in x["v"][1:]]
             print(f"Operator: {op}, Arguments: {args}")
