@@ -157,7 +157,7 @@ def eval(x, env=global_env):
         return env[x["v"]]
     elif x["t"] == 2: # Expressions (lists)
         op = x["v"][0]
-        if op == "d":
+        if op["v"] == "d":
             (_, var, exp) = x["v"]
             env[var] = eval(exp, env)
         elif op["t"] == 3 or op["t"] == 4:
