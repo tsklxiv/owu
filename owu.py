@@ -128,7 +128,7 @@ def parseVal(code, pos):
     return os("Cannot identify what I am reading. Skipping"), pos + 1
 
 def parser(code):
-    "Parser"
+    "Parse a string of tokens"
     pos = 0
     lst = []
     while pos < len(code):
