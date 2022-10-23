@@ -140,14 +140,6 @@ def parser(code):
 
 # Eval
 
-def handle_verbs(op, args, env):
-    if op["v"] == "?":
-        cond, true, false = args
-        exp = (true if eval(cond, env) else false)
-        return eval(exp, env)
-    else:
-        return env[op["v"]](args)
-
 def eval(x, env=global_env):
     "Evaluate an expression in an environment"
     if x["t"] == 3:   # Variable reference
@@ -157,7 +149,15 @@ def eval(x, env=global_env):
         args = [eval(exp, env) for exp in x["v"][1:]]
         print(f"Operator: {op}, Arguments: {args}")
         if op["t"] == 3 or op["t"] == 4:
-            return handle_verbs(op, args, env)
+            if op["v"] == "?":
+                cond, true, false = args
+                exp = (true if eval(cond, env) else false)
+                return eval(exp, env)
+            elif op["v"] == "d":
+                var, exp = args
+                env[var] = eval(exp, env)
+            else:
+                return env[op["v"]](args)
         else:
             return x
     else:             # Literals
