@@ -157,9 +157,12 @@ def eval(x, env=global_env):
         return env[x["v"]]
     elif x["t"] == 2: # Expressions (lists)
         op = x["v"][0]
-        args = [eval(exp, env) for exp in x["v"][1:]]
-        print(f"Operator: {op}, Arguments: {args}")
-        if op["t"] == 3 or op["t"] == 4:
+        if op == "d":
+            (_, var, exp) = x["v"]
+            env[var] = eval(exp, env)
+        elif op["t"] == 3 or op["t"] == 4:
+            args = [eval(exp, env) for exp in x["v"][1:]]
+            print(f"Operator: {op}, Arguments: {args}")
             handle_verbs(op, args, env)
         else:
             return x
