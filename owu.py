@@ -183,8 +183,9 @@ def format(o):
 
 # REPL
 
-def repl(prompt="\t"):
+def repl(prompt=">"):
     code = None
+    print("OwU Lisp 1.0\nType `q` to quit.")
     while True:
         code = input(prompt)
         if code == "q":
