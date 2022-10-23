@@ -159,7 +159,7 @@ def eval(x, env=global_env):
         op = x["v"][0]
         if op["v"] == "d":
             (_, var, exp) = x["v"]
-            env[var] = eval(exp, env)
+            env[var["v"]] = eval(exp, env)
         elif op["t"] == 3 or op["t"] == 4:
             args = [eval(exp, env) for exp in x["v"][1:]]
             print(f"Operator: {op}, Arguments: {args}")
