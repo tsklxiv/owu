@@ -104,9 +104,6 @@ def parseVal(code, pos):
             val, pos = parseVal(code, pos)
             if val != NIL:
                 lst.append(val)
-            if val == EOF:
-                print("Unexpected EOF.")
-                return EOF, pos + 1
             if val["v"] == "]": break
         # Here we need to pop() the list to remove the remaining ]
         lst.pop()
