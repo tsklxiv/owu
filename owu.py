@@ -108,7 +108,7 @@ def parseVal(code, pos):
         # Here we need to pop() the list to remove the remaining ]
         lst.pop()
         return ol(lst), pos
-    elif current == "]":
+    elif code == "]":
         return os("Unexpected ]"), pos + 1
     elif current == "\"":        # Strings
         pos += 1
