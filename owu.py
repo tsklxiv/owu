@@ -133,6 +133,7 @@ def parser(code):
     lst = []
     while pos < len(code):
         val, pos = parseVal(code, pos)
+        if val == NIL: break
         lst.append(val)
     # https://stackoverflow.com/a/1157160
     lst = list(filter(lambda x: x != NIL, lst))
