@@ -168,7 +168,7 @@ def eval(x, env=global_env):
             args = [eval(exp, env) for exp in x["v"][1:]]
             fn = eval(op, env)
             params, body = fn["v"]
-            print(fn, params, body)
+            #print(fn, params, body)
             new_env = dict(zip([p["v"] for p in params["v"]], args))
             new_env = {**new_env, **env}
             return eval(body, new_env)
