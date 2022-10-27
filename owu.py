@@ -12,6 +12,7 @@ TYPES = [
     "verb",       # 4: name/function
     "nil"         # 5: nil/null
     "eof",        # 6: eof/eol check
+    "function",   # 7: name/function (same as verb but with identifier)
 ]
 
 def o   (t, v): return { "t": t, "v": v }
