@@ -167,7 +167,11 @@ def eval(x, env=global_env):
         elif op["t"] == 3:
             args = [eval(exp, env) for exp in x["v"][1:]]
             fn = eval(op, env)
-            return ol([fn, args])
+            params, body = fn["v"]
+            print(fn, params, body)
+            new_env = dict(zip([p["v"] for p in params["v"]], args))
+            new_env = {**new_env, **env}
+            return eval(body, new_env)
         elif op["t"] == 4:
             args = [eval(exp, env) for exp in x["v"][1:]]
             print(f"Operator: {op}, Arguments: {args}")
