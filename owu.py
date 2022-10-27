@@ -181,6 +181,8 @@ def eval(x, env=global_env):
 
 def format(o):
     "Format an object"
+    if isinstance(o, list):
+        return format(o[0])
     if o["t"] == 2:                  # Lists
         return [format(obj) for obj in o["v"]]
     elif o["t"] == 3 or o["t"] == 4: # Identifiers/Verbs
