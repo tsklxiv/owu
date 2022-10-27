@@ -171,7 +171,7 @@ def eval(x, env=global_env):
             env[var["v"]] = eval(exp, env)
             return NIL
         elif op["v"] == "l":
-            params, body = args
+            params, body = x["v"]
             return Procedure(params, body, env)
         elif op["t"] == 3 or op["t"] == 4:
             args = [eval(exp, env) for exp in x["v"][1:]]
