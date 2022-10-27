@@ -2,7 +2,6 @@
 OwU - OwO, but someone punches his left eye.
 """
 
-from pprint import pp
 from functools import reduce
 
 TYPES = [
