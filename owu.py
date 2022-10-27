@@ -28,17 +28,6 @@ EOF   = o(6, "")
 TRUE  = on(1)
 FALSE = on(0)
 
-# Procedures (aka functions)
-# Straight-up copied from Norvig's lis.py (https://github.com/norvig/pytudes/blob/main/py/lis.py#L15,L21)
-
-class Procedure(object):
-    def __init__(self, parms, body, env):
-        self.params, self.body, self.env = parms, body, env
-    def __call__(self, *args):
-        env = dict(zip(self.params, args))
-        env = {**env, **self.env}
-        return eval(self.body, env)
-
 # Primitive verbs
 
 def plus  (x, y): return on(x["v"] + y["v"])
@@ -173,7 +162,7 @@ def eval(x, env=global_env):
             return NIL
         elif op["v"] == "l":
             _, params, body = x["v"]
-            return Procedure(params, body, env)
+            return NIL
         elif op["t"] == 3 or op["t"] == 4:
             args = [eval(exp, env) for exp in x["v"][1:]]
             print(f"Operator: {op}, Arguments: {args}")
