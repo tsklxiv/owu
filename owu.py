@@ -100,13 +100,11 @@ def parseVal(code, pos):
     elif current == "[":        # Expressions/Lists
         pos += 1
         lst = []
-        while True:
+        while code[pos] != ']':
             val, pos = parseVal(code, pos)
             if val != NIL:
                 lst.append(val)
             if val["v"] == "]": break
-        # Here we need to pop() the list to remove the remaining ]
-        lst.pop()
         return ol(lst), pos
     elif code == "]":
         return os("Unexpected ]"), pos + 1
