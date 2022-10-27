@@ -104,7 +104,6 @@ def parseVal(code, pos):
             val, pos = parseVal(code, pos)
             if val != NIL:
                 lst.append(val)
-            if val["v"] == "]": break
         return ol(lst), pos + 1
     elif code == "]":
         return os("Unexpected ]"), pos + 1
