@@ -47,7 +47,7 @@ def typeof(x):    return os(TYPES[x["t"]])
 ## List/String-specific verbs
 
 def head   (x): return x["v"][0]
-def tail   (x): return x["v"][1:]
+def tail   (x): return ol(x["v"][1:])
 def reverse(x): return x["v"][::-1]
 def length (x): return on(len(x["v"]))
 
