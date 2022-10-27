@@ -157,6 +157,9 @@ def handle_verbs(op, args, env):
         cond, true, false = args
         exp = (true if eval(cond, env) else false)
         return eval(exp, env)
+    elif op["v"] == "l":
+        params, body = args
+        return Procedure(params, body, env)
     else:
         return env[op["v"]](args)
 
