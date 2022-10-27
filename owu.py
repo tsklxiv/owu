@@ -41,7 +41,7 @@ def equal (x, y): return on(btoi(x["v"] == y["v"]))
 def maxo  (x, y): return on(max(x["v"], y["v"]))
 def mino  (x, y): return on(min(x["v"], y["v"]))
 def negate(x):    return on(-x["v"])
-def enum  (x):    return ol(list(range(x["v"])))
+def enum  (x):    return ol(list(map(on, range(0, x["v"]))))
 def typeof(x):    return os(TYPES[x["t"]])
 
 ## List/String-specific verbs
@@ -62,7 +62,7 @@ def init_env():
         ">": lambda x: reduce(more, x),
         "<": lambda x: reduce(less, x),
         "=": lambda x: reduce(equal, x),
-        "!": lambda x: ol(list(map(on, range(0, x[0]["v"])))),
+        "!": lambda x: enum(x[0]),
         "h": lambda x: head(x[0]),
         "t": lambda x: tail(x[0]),
         "|": lambda x: reverse(x[0]),
