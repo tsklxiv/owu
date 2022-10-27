@@ -9,7 +9,7 @@ TYPES = [
     "string",     # 1: value
     "list",       # 2: array
     "identifier", # 3: name
-    "verb",       # 4: name/function?
+    "verb",       # 4: name/function
     "nil"         # 5: nil/null
     "eof",        # 6: eof/eol check
 ]
