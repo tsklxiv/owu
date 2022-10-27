@@ -105,7 +105,7 @@ def parseVal(code, pos):
             if val != NIL:
                 lst.append(val)
             if val["v"] == "]": break
-        return ol(lst), pos
+        return ol(lst), pos + 1
     elif code == "]":
         return os("Unexpected ]"), pos + 1
     elif current == "\"":        # Strings
