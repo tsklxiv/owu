@@ -164,7 +164,7 @@ def eval(x, env=global_env):
         elif op["v"] == "l":
             _, params, body = x["v"]
             return of([params, body])
-        elif op["t"] == 3 or op["t"] == 4:
+        elif op["t"] == 3:
             args = [eval(exp, env) for exp in x["v"][1:]]
             print(f"Operator: {op}, Arguments: {args}")
             return handle_verbs(op, args, env)
