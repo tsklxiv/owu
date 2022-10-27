@@ -189,8 +189,6 @@ def format(o):
         return f'{o["v"]}'
     elif o["t"] == 5:                # Nil
         return "NIL"
-    elif o["t"] == 7:                # Functions/Lambdas
-        return f'procedure ({format(o["v"][0])})'
     else:                            # Numbers/Strings/Other literals
         return o["v"]
 
