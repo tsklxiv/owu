@@ -21,6 +21,7 @@ def os  (v):    return o(1, v)
 def ol  (v):    return o(2, v)
 def oi  (v):    return o(3, v)
 def ov  (v):    return o(4, v)
+def of  (v):    return o(7, v)
 def btoi(v):    return 1 if v else 0 # Boolean to plain integer
 
 NIL   = o(5, "")
@@ -162,7 +163,7 @@ def eval(x, env=global_env):
             return NIL
         elif op["v"] == "l":
             _, params, body = x["v"]
-            return NIL
+            return of([params, body])
         elif op["t"] == 3 or op["t"] == 4:
             args = [eval(exp, env) for exp in x["v"][1:]]
             print(f"Operator: {op}, Arguments: {args}")
