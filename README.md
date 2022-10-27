@@ -1,3 +1,3 @@
 # OwU
 
-A Lisp-like language with some inspirations from the APL family (Mostly from K5/K6).
+A Lisp with some features borrowed from the APL family (Mostly from K5/K6).
