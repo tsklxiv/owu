@@ -104,9 +104,9 @@ def parseVal(code, pos):
     elif current == "[":        # Expressions/Lists
         pos += 1
         lst = []
-        while code[pos] != ']':
+        while code[pos] != "]":
             val, pos = parseVal(code, pos)
-            if val != NIL:
+            if val != WS and val != NIL:
                 lst.append(val)
         return ol(lst), pos + 1
     elif code == "]":
@@ -140,6 +140,7 @@ def parser(code):
         val, pos = parseVal(code, pos)
         if val == EOF: break
         lst.append(val)
+    print(lst)
     # https://stackoverflow.com/a/1157160
     lst = list(filter(lambda x: x != WS, lst))
     return lst
