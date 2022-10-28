@@ -151,6 +151,12 @@ def handle_verbs(op, args, env):
     else:
         return env[op["v"]](args)
 
+def call_function(fn, args, env=global_env):
+    params, body = fn["v"]
+    new_env = dict(zip([p["v"] for p in params["v"]], args))
+    new_env = {**new_env, **env}
+    return eval(body, new_env)
+
 def eval(x, env=global_env):
     "Evaluate an expression in an environment"
     if x["t"] == 3:   # Variable reference
@@ -168,12 +174,7 @@ def eval(x, env=global_env):
             args = [eval(exp, env) for exp in x["v"][1:]]
             if op["t"] == 4:
                 return handle_verbs(op, args, env)
-            fn = eval(op, env)
-            params, body = fn["v"]
-            #print(fn, params, body)
-            new_env = dict(zip([p["v"] for p in params["v"]], args))
-            new_env = {**new_env, **env}
-            return eval(body, new_env)
+            return call_function(eval(op, env), args)
         else:
             return x
     else:             # Literals
