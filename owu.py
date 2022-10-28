@@ -26,6 +26,7 @@ def btoi(v):    return 1 if v else 0 # Boolean to plain integer
 
 NIL   = o(5, "")
 EOF   = o(6, "")
+WS    = o(5, "Whitespace")
 TRUE  = on(1)
 FALSE = on(0)
 
@@ -127,8 +128,8 @@ def parseVal(code, pos):
         # Since every verb is a symbol character, we only need to consume
         # one symbol at a time
         return ov(current), pos + 1
-    elif current in WHITESPACE: # Nils
-        return NIL, pos + 1
+    elif current in WHITESPACE: # Whitespaces
+        return WS, pos + 1
     return os("Cannot identify what I am reading. Skipping"), pos + 1
 
 def parser(code):
@@ -140,7 +141,7 @@ def parser(code):
         if val == EOF: break
         lst.append(val)
     # https://stackoverflow.com/a/1157160
-    lst = list(filter(lambda x: x != NIL, lst))
+    lst = list(filter(lambda x: x != WS, lst))
     return lst
 
 # Eval
