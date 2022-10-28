@@ -47,10 +47,11 @@ def typeof(x):    return os(TYPES[x["t"]])
 
 ## List/String-specific verbs
 
-def head   (x): return x["v"][0]
-def tail   (x): return ol(x["v"][1:])
-def reverse(x): return ol(x["v"][::-1])
-def length (x): return on(len(x["v"]))
+def head   (x):    return x["v"][0]
+def tail   (x):    return ol(x["v"][1:])
+def reverse(x):    return ol(x["v"][::-1])
+def length (x):    return on(len(x["v"]))
+def at     (x, y): return x["v"][y["v"]]
 
 # Environments
 def init_env():
@@ -68,6 +69,7 @@ def init_env():
         "t": lambda x: tail(x[0]),
         "|": lambda x: reverse(x[0]),
         "#": lambda x: length(x[0]),
+        "@": lambda x: at(x[0], x[1]),
     }
 global_env = init_env()
 
