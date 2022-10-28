@@ -99,6 +99,8 @@ def parseVal(code, pos):
         return on(int(num)), pos
     elif identifier(current):   # Identifiers
         ident, pos = consume(identifier, code, pos)
+        if ident in global_env:
+            return ov(ident), pos
         return oi(ident), pos
     elif current == "[":        # Expressions/Lists
         pos += 1
