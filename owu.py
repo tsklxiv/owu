@@ -158,7 +158,7 @@ def eval(x, env=global_env):
     elif x["t"] == 2 and len(x["v"]) > 0: # Expressions (lists)
         op = x["v"][0]
         if op["v"] == "d":
-            (_, var, exp) = x["v"]
+            _, var, exp = x["v"]
             env[var["v"]] = eval(exp, env)
             return NIL
         elif op["v"] == "l":
