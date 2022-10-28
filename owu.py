@@ -26,7 +26,7 @@ def btoi(v):    return 1 if v else 0 # Boolean to plain integer
 
 NIL   = o(5, "")
 EOF   = o(6, "")
-WS    = o(5, "Whitespace")
+WS    = "Whitespace"
 TRUE  = on(1)
 FALSE = on(0)
 
