@@ -179,7 +179,7 @@ def eval(x, env=global_env):
         elif op["t"] == 3 or op["t"] == 4:
             args = [eval(exp, env) for exp in x["v"][1:]]
             if op["t"] == 4:
-                return handle_verbs(op, args, env)
+                return handle_verbs(op, args)
             return call_function(eval(op, env), args)
         else:
             return x
