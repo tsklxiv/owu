@@ -71,6 +71,8 @@ def init_env():
         "|": lambda x: reverse(x[0]),
         "#": lambda x: length(x[0]),
         "@": lambda x: at(x[0], x[1]),
+        "max": lambda x: maxo(x[0], x[1]),
+        "min": lambda x: mino(x[0], x[1]),
     }
 global_env = init_env()
 
@@ -100,6 +102,8 @@ def parseVal(code, pos):
         return on(int(num)), pos
     elif identifier(current):   # Identifiers
         ident, pos = consume(identifier, code, pos)
+        if ident in init_env():
+            return ov(ident), pos
         return oi(ident), pos
     elif current == "[":        # Expressions/Lists
         pos += 1
