@@ -147,7 +147,8 @@ def parser(code):
 
 # Eval
 
-def handle_verbs(op, args, env):
+def handle_verbs(op, args, env=global_env):
+    "Handle default verbs"
     if op["v"] == "?":
         cond, true, false = args
         exp = (true if not eval(cond, env) else false)
@@ -156,6 +157,7 @@ def handle_verbs(op, args, env):
         return env[op["v"]](args)
 
 def call_function(fn, args, env=global_env):
+    "Call an OwU function with the arguments in an environment"
     params, body = fn["v"]
     new_env = dict(zip([p["v"] for p in params["v"]], args))
     new_env = {**new_env, **env}
@@ -202,6 +204,7 @@ def format(o):
 # REPL
 
 def repl(prompt="> "):
+    "REPL"
     code = None
     print("OwU Lisp 1.0\nType `q` to quit.")
     while True:
