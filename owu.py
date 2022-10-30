@@ -71,8 +71,8 @@ def init_env():
         "|": lambda x: reverse(x[0]),
         "#": lambda x: length(x[0]),
         "@": lambda x: at(x[0], x[1]),
-        "max": lambda x: maxo(x[0], x[1]),
-        "min": lambda x: mino(x[0], x[1]),
+        "max": lambda x: reduce(maxo, x),
+        "min": lambda x: reduce(mino, x),
     }
 global_env = init_env()
 
