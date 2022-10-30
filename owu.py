@@ -144,7 +144,6 @@ def parser(code):
         val, pos = parseVal(code, pos)
         if val == EOF: break
         lst.append(val)
-    print(lst)
     # https://stackoverflow.com/a/1157160
     lst = list(filter(lambda x: x != WS, lst))
     return lst
