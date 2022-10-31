@@ -174,7 +174,7 @@ def call_function(fn, args, env=global_env):
 def eval(x, env=global_env):
     "Evaluate an expression in an environment"
     if x["t"] == 3:   # Variable reference
-        if env[x["v"]]:
+        if x["v"] in env:
             return env[x["v"]]
         else:
             error(f"Name {x['v']} is not defined.")
