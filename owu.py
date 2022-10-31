@@ -3,6 +3,7 @@ OwU - OwO, but someone punches his left eye.
 """
 
 from functools import reduce
+from sys import stderr
 
 TYPES = [
     "number",     # 0: value
@@ -15,14 +16,16 @@ TYPES = [
     "function",   # 7: body, params, env
 ]
 
-def o   (t, v): return { "t": t, "v": v }
-def on  (v):    return o(0, v)
-def os  (v):    return o(1, v)
-def ol  (v):    return o(2, v)
-def oi  (v):    return o(3, v)
-def ov  (v):    return o(4, v)
-def of  (v):    return o(7, v)
-def btoi(v):    return on(1) if v else on(0) # Boolean to o-integer
+def o    (t, v): return { "t": t, "v": v }
+def on   (v):    return o(0, v)
+def os   (v):    return o(1, v)
+def ol   (v):    return o(2, v)
+def oi   (v):    return o(3, v)
+def ov   (v):    return o(4, v)
+def of   (v):    return o(7, v)
+def btoi (v):    return on(1) if v else on(0) # Boolean to o-integer
+def error(v):    print("Error: ", *v, file=stderr)
+def warn (v):    print("Warn: ", *v, file=stderr)
 
 NIL   = o(5, "")
 EOF   = o(6, "")
@@ -171,7 +174,11 @@ def call_function(fn, args, env=global_env):
 def eval(x, env=global_env):
     "Evaluate an expression in an environment"
     if x["t"] == 3:   # Variable reference
-        return env[x["v"]]
+        if env[x["v"]]:
+            return env[x["v"]]
+        else:
+            error(f"Name {x['v']} is not defined.")
+            return NIL
     elif x["t"] == 2 and len(x["v"]) > 0: # Expressions (lists)
         op = x["v"][0]
         if op["v"] == "d":
