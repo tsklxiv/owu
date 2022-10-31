@@ -9,10 +9,10 @@ TYPES = [
     "string",     # 1: value
     "list",       # 2: array
     "identifier", # 3: name
-    "verb",       # 4: name/function
+    "verb",       # 4: name
     "nil"         # 5: nil/null
     "eof",        # 6: eof/eol check
-    "function",   # 7: name/function (same as verb but with identifier)
+    "function",   # 7: body, params, env
 ]
 
 def o   (t, v): return { "t": t, "v": v }
