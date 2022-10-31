@@ -42,6 +42,7 @@ def less  (x, y): return on(btoi(x["v"] < y["v"]))
 def equal (x, y): return on(btoi(x["v"] == y["v"]))
 def maxo  (x, y): return on(max(x["v"], y["v"]))
 def mino  (x, y): return on(min(x["v"], y["v"]))
+def noto  (x):    return equal(x["v"], TRUE)
 def negate(x):    return on(-x["v"])
 def enum  (x):    return ol(list(map(on, range(0, x["v"]))))
 def typeof(x):    return os(TYPES[x["t"]])
@@ -71,6 +72,7 @@ def init_env():
         "|": lambda x: reverse(x[0]),
         "#": lambda x: length(x[0]),
         "@": lambda x: at(x[0], x[1]),
+        "~": lambda x: noto(x[0]),
         "max": lambda x: reduce(maxo, x),
         "min": lambda x: reduce(mino, x),
     }
