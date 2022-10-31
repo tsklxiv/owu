@@ -85,7 +85,6 @@ global_env = init_env()
 
 WHITESPACE = " \n\t\r\f"
 numeric = lambda c: c.isnumeric()
-identifier = lambda c: c.isalpha() and c not in WHITESPACE
 symbol = lambda c: c.isascii() and c not in WHITESPACE
 
 def consume(cond, code, pos):
@@ -94,6 +93,15 @@ def consume(cond, code, pos):
     pos += 1
     while pos < len(code) and cond(code[pos]):
         pos += 1
+    return code[prev_pos:pos], pos
+
+def identifier(code, pos):
+    "Consume an identifier"
+    prev_pos = pos
+    pos += 1
+    if code[pos].isalpha():
+        while pos < len(code) and (code[pos].isalpha() or code[pos].isnumeric() or code[pos] == "_"):
+            pos += 1
     return code[prev_pos:pos], pos
 
 def parseVal(code, pos):
@@ -105,8 +113,8 @@ def parseVal(code, pos):
     if numeric(current):        # Numbers
         num, pos = consume(numeric, code, pos)
         return on(int(num)), pos
-    elif identifier(current):   # Identifiers
-        ident, pos = consume(identifier, code, pos)
+    elif current.isalpha():   # Identifiers
+        ident, pos = identifier(code, pos)
         if ident in init_env():
             return ov(ident), pos
         return oi(ident), pos
