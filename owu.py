@@ -24,8 +24,8 @@ def oi   (v):    return o(3, v)
 def ov   (v):    return o(4, v)
 def of   (v):    return o(7, v)
 def btoi (v):    return on(1) if v else on(0) # Boolean to o-integer
-def error(v):    print("Error: ", *v, file=stderr)
-def warn (v):    print("Warn: ", *v, file=stderr)
+def error(v):    print("Error: ", v, file=stderr)
+def warn (v):    print("Warn: ", v, file=stderr)
 
 NIL   = o(5, "")
 EOF   = o(6, "")
