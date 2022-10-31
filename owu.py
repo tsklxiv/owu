@@ -177,7 +177,7 @@ def eval(x, env=global_env):
         if x["v"] in env:
             return env[x["v"]]
         else:
-            error(f"Name {x['v']} is not defined.")
+            error(f"Name {repr(x['v'])} is not defined.")
             return NIL
     elif x["t"] == 2 and len(x["v"]) > 0: # Expressions (lists)
         op = x["v"][0]
