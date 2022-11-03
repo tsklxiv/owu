@@ -84,6 +84,7 @@ def init_env():
         "p": lambda x: printo(o["v"] for o in x),
         "max": lambda x: reduce(maxo, x),
         "min": lambda x: reduce(mino, x),
+        "map": lambda x: ol(list(map(lambda y: call_function(x[0], y), *x[1:]))),
     }
 global_env = init_env()
 
