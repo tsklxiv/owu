@@ -50,7 +50,8 @@ def oro   (x, y): return btoi(x["v"] or y["v"])
 def noto  (x):    return btoi(not x["v"])
 def negate(x):    return on(-x["v"])
 def enum  (x):    return ol(list(map(on, range(0, x["v"]))))
-def typeof(x):    return os(TYPES[x["t"]])
+def typeof(x):    return os(TYPES[x["t"]]) # Unused
+def printo(x):    print(*x); return NIL
 
 ## List/String-specific verbs
 
@@ -79,7 +80,7 @@ def init_env():
         "~": lambda x: noto(x[0]),
         "&": lambda x: ando(x[0], x[1]),
         "|": lambda x: reverse(x[0]),
-        "p": lambda x: print(*x),
+        "p": lambda x: printo(x),
         "or": lambda x: oro(x[0], x[1]),
         "max": lambda x: reduce(maxo, x),
         "min": lambda x: reduce(mino, x),
