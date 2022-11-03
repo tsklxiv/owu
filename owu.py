@@ -45,6 +45,8 @@ def less  (x, y): return btoi(x["v"] < y["v"])
 def equal (x, y): return btoi(x["v"] == y["v"])
 def maxo  (x, y): return on(max(x["v"], y["v"]))
 def mino  (x, y): return on(min(x["v"], y["v"]))
+def ando  (x, y): return btoi(x["v"] and y["v"])
+def oro   (x, y): return btoi(x["v"] or y["v"])
 def noto  (x):    return btoi(not x["v"])
 def negate(x):    return on(-x["v"])
 def enum  (x):    return ol(list(map(on, range(0, x["v"]))))
@@ -72,10 +74,12 @@ def init_env():
         "!": lambda x: enum(x[0]),
         "h": lambda x: head(x[0]),
         "t": lambda x: tail(x[0]),
-        "|": lambda x: reverse(x[0]),
         "#": lambda x: length(x[0]),
         "@": lambda x: at(x[0], x[1]),
         "~": lambda x: noto(x[0]),
+        "&": lambda x: ando(x[0], x[1]),
+        "|": lambda x: reverse(x[0]),
+        "or": lambda x: oro(x[0], x[1]),
         "max": lambda x: reduce(maxo, x),
         "min": lambda x: reduce(mino, x),
     }
