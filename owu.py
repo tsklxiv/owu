@@ -4,6 +4,7 @@ OwU - OwO, but someone punches his left eye.
 
 from functools import reduce
 from sys import stderr
+from pprint import pprint
 
 TYPES = [
     "number",     # 0: value
@@ -238,9 +239,10 @@ def repl(prompt="> "):
         if code == "q":
             exit(0)
         parsed = parser(code)
-        print(f"Parsed: {parsed}")
+        print(f"Parsed: ", end="")
+        pprint(parsed)
         for expr in parsed:
-            print(format(eval(expr)))
+            pprint(format(eval(expr)))
 
 if __name__ == "__main__":
     repl()
