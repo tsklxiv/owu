@@ -80,7 +80,7 @@ def init_env():
         "~": lambda x: noto(x[0]),
         "&": lambda x: ando(x[0], x[1]),
         "|": lambda x: reverse(x[0]),
-        "p": lambda x: printo(x),
+        "p": lambda x: printo(o["v"] for o in x),
         "or": lambda x: oro(x[0], x[1]),
         "max": lambda x: reduce(maxo, x),
         "min": lambda x: reduce(mino, x),
