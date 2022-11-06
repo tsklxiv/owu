@@ -31,6 +31,7 @@ def warn (v):    print("Warn: ", v, file=stderr)
 NIL   = o(5, "")
 EOF   = o(6, "")
 WS    = "Whitespace"
+CMT   = "Comment"
 TRUE  = on(1)
 FALSE = on(0)
 
@@ -146,7 +147,7 @@ def parseVal(code, pos):
         return os(s), pos + 1
     elif current == ";":        # Comments
         while pos < len(code) and code[pos] != "\n": pos += 1
-        return NIL, pos
+        return CMT, pos
     elif symbol(current):       # Verbs/Symbols
         # Since every verb is a symbol character, we only need to consume
         # one symbol at a time
@@ -165,6 +166,9 @@ def parser(code):
         lst.append(val)
     # https://stackoverflow.com/a/1157160
     lst = list(filter(lambda x: x != WS, lst))
+    # I don't know if I can combine both of these together without
+    # making it look ugly
+    lst = list(filter(lambda x: x != CMT, lst))
     return lst
 
 # Eval
