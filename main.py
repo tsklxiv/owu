@@ -7,7 +7,7 @@ import click
 from owu import run, repl
 
 @click.command()
-@click.argument("files", type=click.STRING, nargs=-1, help="Input file(s)")
+@click.argument("files", type=click.STRING, nargs=-1)
 @click.option("tree", "-t", type=click.BOOL, default=False, help="Print parsed tree of each line before evaling")
 def main(files):
     if len(files) == 0:
