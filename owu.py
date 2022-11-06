@@ -3,7 +3,7 @@ OwU - OwO, but someone punches his left eye.
 """
 
 from functools import reduce
-from sys import stderr
+from sys import stderr, argv
 from pprint import pprint
 
 TYPES = [
@@ -243,5 +243,19 @@ def repl(prompt="> "):
         for expr in parsed:
             pprint(format(eval(expr)))
 
+# CLI
+
+def main():
+    args = argv
+    if len(args) == 1:
+        repl()
+    elif len(args) >= 1:
+        for file in args[1:]:
+            with open(file, "r") as f:
+                parsed = parser(f.read())
+                pprint(parsed)
+                for expr in parsed:
+                    pprint(format(eval(expr)))
+
 if __name__ == "__main__":
-    repl()
+    main()
