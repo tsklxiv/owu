@@ -227,10 +227,11 @@ def format(o):
     else:                            # Numbers/Strings/Other literals
         return o["v"]
 
-def run(code):
+def run(code, tree=False):
     parsed = parser(code)
-    print(f"Parsed: ", end="")
-    pprint(parsed)
+    if tree:
+        print(f"Parsed: ", end="")
+        pprint(parsed)
     for expr in parsed:
         pprint(format(eval(expr)))
 
