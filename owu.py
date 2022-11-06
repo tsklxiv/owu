@@ -227,6 +227,13 @@ def format(o):
     else:                            # Numbers/Strings/Other literals
         return o["v"]
 
+def run(code):
+    parsed = parser(code)
+    print(f"Parsed: ", end="")
+    pprint(parsed)
+    for expr in parsed:
+        pprint(format(eval(expr)))
+
 # REPL
 
 def repl(prompt="> "):
@@ -237,11 +244,7 @@ def repl(prompt="> "):
         code = input(prompt)
         if code == "q":
             exit(0)
-        parsed = parser(code)
-        print(f"Parsed: ", end="")
-        pprint(parsed)
-        for expr in parsed:
-            pprint(format(eval(expr)))
+        run(code)
 
 # CLI
 
@@ -252,10 +255,7 @@ def main():
     elif len(args) >= 1:
         for file in args[1:]:
             with open(file, "r") as f:
-                parsed = parser(f.read())
-                pprint(parsed)
-                for expr in parsed:
-                    pprint(format(eval(expr)))
+                run(f.read())
 
 if __name__ == "__main__":
     main()
