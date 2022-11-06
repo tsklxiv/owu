@@ -245,17 +245,3 @@ def repl(prompt="> "):
         if code == "q":
             exit(0)
         run(code)
-
-# CLI
-
-def main():
-    args = argv
-    if len(args) == 1:
-        repl()
-    elif len(args) >= 1:
-        for file in args[1:]:
-            with open(file, "r") as f:
-                run(f.read())
-
-if __name__ == "__main__":
-    main()
