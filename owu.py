@@ -3,7 +3,7 @@ OwU - OwO, but someone punches his left eye.
 """
 
 from functools import reduce
-from sys import stderr, argv
+from sys import stderr
 from pprint import pprint
 
 TYPES = [
