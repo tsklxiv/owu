@@ -189,16 +189,16 @@ def eval(x, env=global_env):
             return NIL
     elif x["t"] == 2 and len(x["v"]) > 0: # Expressions (lists)
         op = x["v"][0]
-        if op["v"] == "d":
+        if op["v"] == "d":   # Define
             _, var, exp = x["v"]
             env[var["v"]] = eval(exp, env)
             return NIL
-        elif op["v"] == "l":
+        elif op["v"] == "l": # Lambda
             _, params, body = x["v"]
             return of([params, body])
-        elif op["v"] == "q":
+        elif op["v"] == "q": # Quote
             _, values = x["v"]
-            return os(repr(values))
+            return os(str(values))
         elif op["t"] == 3 or op["t"] == 4:
             args = [eval(exp, env) for exp in x["v"][1:]]
             if op["t"] == 4:
