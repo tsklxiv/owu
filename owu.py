@@ -82,7 +82,6 @@ def init_env():
         "&": lambda x: ando(x[0], x[1]),
         "|": lambda x: reverse(x[0]) if x[0]["t"] == 2 else (os(x[0]["v"][::-1]) if x[0]["t"] == 1 else oro(x[0], x[1])),
         "p": lambda x: printo(o["v"] for o in x),
-        "q": lambda x: os(x[0]),
         ".": lambda x: eval(x[0]),
         "max": lambda x: reduce(maxo, x),
         "min": lambda x: reduce(mino, x),
@@ -197,6 +196,9 @@ def eval(x, env=global_env):
         elif op["v"] == "l":
             _, params, body = x["v"]
             return of([params, body])
+        elif op["v"] == "q":
+            _, values = x["v"]
+            return os(repr(values))
         elif op["t"] == 3 or op["t"] == 4:
             args = [eval(exp, env) for exp in x["v"][1:]]
             if op["t"] == 4:
