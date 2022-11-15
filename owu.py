@@ -82,6 +82,7 @@ def init_env():
         "&": lambda x: ando(x[0], x[1]),
         "|": lambda x: reverse(x[0]) if x[0]["t"] == 2 else (os(x[0]["v"][::-1]) if x[0]["t"] == 1 else oro(x[0], x[1])),
         "p": lambda x: printo(o["v"] for o in x),
+        "q": lambda x: os(x[0]),
         ".": lambda x: eval(x[0]),
         "max": lambda x: reduce(maxo, x),
         "min": lambda x: reduce(mino, x),
@@ -136,16 +137,6 @@ def parseVal(code, pos):
         return ol(lst), pos + 1
     elif code == "]":
         return os("Unexpected ]"), pos + 1
-    elif current == "\"":        # Strings
-        pos += 1
-        s = ""
-        while pos < len(code):
-            if code[pos] == "\"":
-                break
-            s += code[pos]
-            pos += 1
-        # pos + 1 also to skip the remaining "
-        return os(s), pos + 1
     elif current == ";":        # Comments
         while pos < len(code) and code[pos] != "\n": pos += 1
         return CMT, pos
