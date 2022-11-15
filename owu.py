@@ -166,8 +166,7 @@ def parser(code):
         lst.append(val)
     # https://stackoverflow.com/a/1157160
     lst = list(filter(lambda x: x != WS, lst))
-    # I don't know if I can combine both of these together without
-    # making it look ugly
+    # I don't know if I can combine both of these together
     lst = list(filter(lambda x: x != CMT, lst))
     return lst
 
