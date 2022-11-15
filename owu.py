@@ -69,8 +69,7 @@ def init_env():
         "+": lambda x: reduce(plus, x),
         "-": lambda x: reduce(minus, x),
         "*": lambda x: reduce(times, x),
-        "/": lambda x: reduce(divide, x),
-        "%": lambda x: reduce(modulo, x),
+        "%": lambda x: reduce(divide, x),
         ">": lambda x: reduce(more, x),
         "<": lambda x: reduce(less, x),
         "=": lambda x: reduce(equal, x),
@@ -85,6 +84,7 @@ def init_env():
         "p": lambda x: printo(o["v"] for o in x),
         "max": lambda x: reduce(maxo, x),
         "min": lambda x: reduce(mino, x),
+        "mod": lambda x: reduce(modulo, x),
     }
 global_env = init_env()
 
