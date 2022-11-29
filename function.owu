@@ -1,5 +1,3 @@
-[d add1
-  [l [a]
-    [+ a 1]]
+[d add1 [l [a] [+ a 1]]
 [d x 5]
 [p [add1 x]]
